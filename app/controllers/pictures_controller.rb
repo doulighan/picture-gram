@@ -1,7 +1,7 @@
 class PicturesController < ApplicationController
 
   def index
-    @pictures = Picture.trending
+    @pictures = Picture.all
   end
 
 

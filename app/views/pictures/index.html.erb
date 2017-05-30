@@ -1,5 +1,11 @@
-<h1> Most Recent Picture </h1>
+<h1> Most Recent Pictures </h1>
 <hr>
 <% @pictures.each do |pic| %>
+
 <img src="<%= pic.image_url %>" alt="<%= pic.title %>">
+<ol>
+<%= pic.tags.all.each do |tag| %>
+  <li>tage.name</li>
+  <% end %>
+  </ol>
 <% end %>

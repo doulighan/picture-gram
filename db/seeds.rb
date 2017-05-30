@@ -32,28 +32,36 @@ end
  
 url = "http://www.defenders.org/sites/default/files/styles/large/public/dolphin-kristian-sekulic-isp.jpg"
  
+
 Picture.create(
-  image_url: "http://lorempixel.com/300/300",
+  image_url: "http://lorempixel.com/150/150",
   title: "Dog!",
   user_id: User.first.id
 )
+
 Picture.create(
-  image_url: "http://lorempixel.com/300/300",
+  image_url: "http://lorempixel.com/160/160",
   title: "Grasshopper!",
   user_id: User.first.id
 )
+
+
 Picture.create(
-  image_url: "http://lorempixel.com/300/300",
+  image_url: "http://lorempixel.com/180/158",
   title: "Doggo!",
   user_id: User.first.id
 )
+
+
 Picture.create(
-  image_url: "http://lorempixel.com/300/300",
+  image_url: "http://lorempixel.com/140/140",
   title: "Coyote!",
   user_id: User.first.id
 )
+
+
 Picture.create(
-  image_url: "http://lorempixel.com/300/300",
+  image_url: "http://lorempixel.com/170/170",
   title: "Space Doggo!",
   user_id: User.first.id
 )

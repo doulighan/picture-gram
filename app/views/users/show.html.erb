@@ -6,3 +6,10 @@
 <%= link_to image_tag(pic.image_url), picture_path(pic) %> </li>
 <% end %>
 
+
+<%= form_for(@picture) do |f| %>  
+<%= f.label :image_url %>
+<%= f.url_field :image_url %>
+<%= f.label :title %>
+<%= f.url_field :title %>
+<% end %>

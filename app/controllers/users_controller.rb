@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   def show
     @user = get_user
+    @picture = Picture.new
+    @tags = Tag.all
   end
 
 
