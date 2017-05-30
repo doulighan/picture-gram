@@ -33,30 +33,31 @@ end
 url = "http://www.defenders.org/sites/default/files/styles/large/public/dolphin-kristian-sekulic-isp.jpg"
  
 Picture.create(
-  image_url: "http://imgur.com/r/animals/UE9z3EM"
+  image_url: "http://lorempixel.com/300/300",
   title: "Dog!",
   user_id: User.first.id
-)Picture.create(
-  image_url: "http://imgur.com/r/animals/1L1q9dI",
+)
+Picture.create(
+  image_url: "http://lorempixel.com/300/300",
   title: "Grasshopper!",
   user_id: User.first.id
-)Picture.create(
-  image_url: "http://imgur.com/r/animals/PlOSrUX",
+)
+Picture.create(
+  image_url: "http://lorempixel.com/300/300",
   title: "Doggo!",
   user_id: User.first.id
-)Picture.create(
-  image_url: "http://imgur.com/r/animals/1B9hiKf",
+)
+Picture.create(
+  image_url: "http://lorempixel.com/300/300",
   title: "Coyote!",
   user_id: User.first.id
-)Picture.create(
-  image_url: "http://imgur.com/r/animals/DQCQNsR",
+)
+Picture.create(
+  image_url: "http://lorempixel.com/300/300",
   title: "Space Doggo!",
   user_id: User.first.id
-)Picture.create(
-  image_url: url,
-  title: "!",
-  user_id: User.first.id
 )
+
 
 
 
