@@ -8,6 +8,28 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <% if current_user %>
+    <p> <%= "Hello, #{current_user.username}" %> </p>
+    <p> <%= link_to "Sign Out", signout_path, method: :delete %> </p>
+  <% else %>
+    <div>
+    <%= form_tag signin_path do %>
+      <%= text_field_tag :username %>
+      <%= password_field_tag :password %>
+      <%= submit_tag "Sign In" %>
+      <% end %>
+    </div>
+  <div>
+    <%= link_to "Sign Up", signup_path %>
+  <% end %>
+
+    <hr>
+  <div>
+   <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+
+
   <body>
     <%= yield %>
   </body>

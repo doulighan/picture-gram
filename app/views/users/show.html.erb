@@ -1,0 +1,10 @@
+<h3><%= @user.username %></h3>
+<p> <%= @user.email %></p>
+<label> Pictures: </label>
+<ul>
+<% @user.pictures.each do |pic| %> 
+<img src="<%= pic.image_url %>" alt="<%= pic.title %>" style=" width:304px;height:228px;">
+<li><%= link_to pic.title, picture_path(pic) %> </li>
+<% end %>
+</ul>
+
