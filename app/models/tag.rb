@@ -11,6 +11,6 @@ class Tag < ApplicationRecord
   end
 
   def self.trending
-    Picture.order_by_date[0..9].sort_by do |pic|
+    Picture.order_by_date[0..9]
   end
 end
