@@ -15,5 +15,6 @@
   <%= f.label :title %>
   <%= f.text_field :title %>
   <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %>
+  <%= f.hidden_field :user_id, value: @user.id %>
   <%= f.submit %>  
 <% end %>

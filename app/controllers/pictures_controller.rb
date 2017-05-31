@@ -11,7 +11,6 @@ class PicturesController < ApplicationController
 
   def create
     @picture = Picture.new(picture_params)
-    @picture.user_id = current_user.id
     if @picture.save
 
       flash[:success] = "You have created a pshow new picture!"
@@ -25,7 +24,7 @@ class PicturesController < ApplicationController
 private
 
   def picture_params
-  params.require(:picture).permit(:title, :image_url, :tag_ids => [])
+  params.require(:picture).permit(:user_id, :title, :image_url, :tag_ids => [])
   end
 
   def get_picture
