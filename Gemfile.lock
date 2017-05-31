@@ -44,7 +44,10 @@ GEM
     bcrypt (3.1.11)
     bindex (0.5.0)
     builder (3.2.3)
-    byebug (9.0.6)
+    byebug (4.0.5)
+      columnize (= 0.9.0)
+    byebug-color-printer (0.1.0)
+      byebug (~> 4.0)
     capybara (2.14.0)
       addressable
       mime-types (>= 1.16)
@@ -61,13 +64,14 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    columnize (0.9.0)
     concurrent-ruby (1.0.5)
     erubi (1.6.0)
     execjs (2.7.0)
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    i18n (0.8.1)
+    i18n (0.8.4)
     jbuilder (2.6.4)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2)
@@ -175,6 +179,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
+  byebug-color-printer
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
@@ -192,4 +197,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.14.6
+   1.15.0

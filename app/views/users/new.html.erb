@@ -1,9 +1,38 @@
 <%= form_for @user do |f| %>
-<%= f.label :username %>
-<%= f.text_field :username %>
-<%= f.label :email %>
-<%= f.email_field :email %>
-<%= f.label :password %>
-<%= f.password_field :password %>
-<%= f.submit %>
+  <div style="background-color:#e0ffff">
+    <form class="form-horizontal">
+      <fieldset>
+        <legend>Sign Up</legend>
+        <div class="form-group">
+          <label for="inputUsername" class="col-lg-2 control-label">Username</label>
+          <div class="col-lg-10">
+            <div style="margin-top:10px"><%= f.text_field :username, class: "form-control" %></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+          <div class="col-lg-10">
+            <div style="margin-top:10px"><%= f.email_field :email, class: "form-control" %></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+          <div class="col-lg-10">
+            <div style="margin-top:10px"><%= f.password_field :password, class: "form-control" %></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputPasswordConfirmation" class="col-lg-2 control-label">Confirm password</label>
+          <div class="col-lg-10">
+            <div style="margin-top:10px"><%= f.password_field :password_confirmation, class: "form-control" %></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <%= f.submit class: "btn btn-primary" %>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
 <% end %>

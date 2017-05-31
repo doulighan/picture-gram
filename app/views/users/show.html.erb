@@ -1,5 +1,5 @@
 <h3><%= @user.username %></h3>
-<p> <%= @user.email %></p>
+
 <label> Pictures: </label>
 <br>
 <% @user.pictures.each do |pic| %> 
@@ -10,11 +10,36 @@
 <br>
 
 <%= form_for(@picture) do |f| %>  
-  <%= f.label :image_url %>
-  <%= f.url_field :image_url %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %>
-  <%= f.hidden_field :user_id, value: @user.id %>
-  <%= f.submit %>  
+  <div style="background-color:#e0ffff">
+    <form class="form-horizontal">
+      <fieldset>
+        <legend>Post picture</legend>
+        <div class="form-group">
+          <label for="inputImageUrl" class="col-lg-2 control-label">Image URL</label>
+          <div class="col-lg-10">
+            <div style="margin-top:10px"><%= f.url_field :image_url, class: "form-control" %></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="inputTitle" class="col-lg-2 control-label">Title</label>
+          <div class="col-lg-10">
+            <div style="margin-top:10px"><%= f.text_field :title, class: "form-control" %></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
+            <%= b.label class:"label-checkbox" do%>
+              <%=b.check_box + b.text%>
+            <%end%>
+          <%end%>
+        <div>
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <%= f.submit class: "btn btn-primary" %>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
 <% end %>
