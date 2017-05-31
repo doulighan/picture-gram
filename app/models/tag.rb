@@ -11,7 +11,7 @@ class Tag < ApplicationRecord
   end
 
   def self.trending
-    pic = Picture.order("created_at DESC").sort_by { |pic| pic.comments.length }.first
+    pic = Picture.order("created_at DESC LIMIT 10").sort_by { |pic| pic.comments.length }.first
     pic.tags.sample
   end
 

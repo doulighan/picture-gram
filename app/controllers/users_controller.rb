@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_action :authenticate, only: :show
   def new
     @user = User.new
   end
@@ -20,6 +20,10 @@ class UsersController < ApplicationController
       flash[:warning] = "User not created!"
       render :new
     end
+  end
+
+  def pictures
+    byebyg
   end
 
   private

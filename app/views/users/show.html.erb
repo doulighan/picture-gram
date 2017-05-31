@@ -3,13 +3,17 @@
 <label> Pictures: </label>
 <br>
 <% @user.pictures.each do |pic| %> 
-<%= link_to image_tag(pic.image_url), picture_path(pic) %> </li>
+  <%= link_to image_tag(pic.image_url), picture_path(pic) %> </li>
 <% end %>
-
+<br>
+<hr>
+<br>
 
 <%= form_for(@picture) do |f| %>  
-<%= f.label :image_url %>
-<%= f.url_field :image_url %>
-<%= f.label :title %>
-<%= f.url_field :title %>
+  <%= f.label :image_url %>
+  <%= f.url_field :image_url %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) %>
+  <%= f.submit %>  
 <% end %>
