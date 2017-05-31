@@ -1,4 +1,5 @@
 class PicturesController < ApplicationController
+  before_action :authenticate, except: :index
 
   def index
     @pictures = Picture.all

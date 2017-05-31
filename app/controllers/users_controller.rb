@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate, only: :show
+  
   def new
     @user = User.new
   end

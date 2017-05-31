@@ -11,6 +11,7 @@
   <% if current_user %>
     <p> <%= "Hello, #{current_user.username}" %> </p>
     <p> <%= link_to "Sign Out", signout_path, method: :delete %> </p>
+    <p> <%= link_to "Homepage", root_path, method: :get %> </p>
   <% else %>
     <div>
     <%= form_tag signin_path do %>

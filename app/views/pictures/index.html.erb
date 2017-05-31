@@ -2,10 +2,10 @@
 <hr>
 <% @pictures.each do |pic| %>
 
-<img src="<%= pic.image_url %>" alt="<%= pic.title %>">
-<ol>
-<%= pic.tags.all.each do |tag| %>
-  <li>tage.name</li>
+<%= link_to image_tag(pic.image_url), picture_path(pic) %>
+<ul>
+<% pic.tags.all.each do |tag| %>
+ <li>  <%= tag.name %> </li>
   <% end %>
-  </ol>
+  </ul>
 <% end %>

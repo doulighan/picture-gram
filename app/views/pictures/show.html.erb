@@ -1,2 +1,8 @@
 <img src="<%= @picture.image_url %>" alt="<%= @picture.title %>">
 <h2><%= @picture.title %></h2>
+<ul> 
+<% @picture.tags.each do |tag| %>
+  <li><%= tag.name %> </li>
+  <% end %>
+</ul>
+
