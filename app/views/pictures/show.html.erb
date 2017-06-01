@@ -8,39 +8,22 @@
 <hr>
 <h4>Comments</h4><br>
 <% @picture.comments.each do |comment| %>
-  <li><%= User.find(comment.id).username %></li>
+  <li><%= comment.user.username %></li>
   <p> <%= comment.content %> </p>
 <% end %>
 
 <%= form_for Comment.new do |f| %>
+  <%= f.hidden_field :picture_id, value: @picture.id %>
   <div style="background-color:#e0ffff">
     <form class="form-horizontal">
       <fieldset>
-        <legend>Sign Up</legend>
-        <div class="form-group">
-          <label for="inputUsername" class="col-lg-2 control-label">Username</label>
-          <div class="col-lg-10">
-            <div style="margin-top:10px"><%= f.text_field :username, class: "form-control" %></div>
+        <legend>Post a comment</legend>
+       <div class="form-group">
+            <label for="textArea" class="col-lg-2 control-label"></label>
+            <div class="col-lg-10">
+              <%= f.text_area(:content, size: '50x10') %>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-          <div class="col-lg-10">
-            <div style="margin-top:10px"><%= f.email_field :email, class: "form-control" %></div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-          <div class="col-lg-10">
-            <div style="margin-top:10px"><%= f.password_field :password, class: "form-control" %></div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="inputPasswordConfirmation" class="col-lg-2 control-label">Confirm password</label>
-          <div class="col-lg-10">
-            <div style="margin-top:10px"><%= f.password_field :password_confirmation, class: "form-control" %></div>
-          </div>
-        </div>
         <div class="form-group">
           <div class="col-lg-10 col-lg-offset-2">
             <%= f.submit class: "btn btn-primary" %>

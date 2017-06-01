@@ -2,20 +2,21 @@ class CommentsController < ApplicationController
   
 
   def create
-    user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      flash[:success] = "Logged In!"
-      redirect_to user_path(user)
+    @comment = Comment.new(comment_params)
+    @comment.user_id = session[:user_id]
+    if @comment.save
+      flash[:success] = "Comment posted!"
+      redirect_to picture_path(@comment.picture_id)
     else
-      flash[:warning] = "Login Failed!"
-      redirect_to root_path
+      flash[:warning] = "Comment failed!"
+      redirect_to picture_path(@comment.picture_id)
     end
   end
 
-    def destroy
-      session[:user_id] = nil
-      flash[:success] = "Logged Out!"
-      redirect_to root_path
-    end
+  private 
+
+  def  comment_params
+    params.require(:comment).permit(:content, :picture_id)
+  end
+
 end

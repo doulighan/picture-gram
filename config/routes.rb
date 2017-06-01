@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'pictures#index'
   resources :pictures, except: [:delete, :destroy, :new]
   resources :users, except: [:delete, :destroy, :new] 
-  resources :tags, except: [:delete, :destroy, :show, :index]
+  resources :comments, only: [:create]
   resources :tags, only: [:show, :index]
   
   get '/signup', to: 'users#new'

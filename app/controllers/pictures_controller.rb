@@ -29,6 +29,7 @@ private
   end
 
   def get_picture
+
     Picture.find(params[:id])
   end
 
