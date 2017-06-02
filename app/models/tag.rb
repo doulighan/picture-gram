@@ -6,12 +6,13 @@ class Tag < ApplicationRecord
     Tag.all.sort_by {|tag| tag.pictures.length }.reverse
   end
 
-  def self.top_three
-    most_popular[0..2]
+  def self.top_five
+    most_popular[0..4]
   end
 
   def self.trending
-    pic = Picture.order("created_at DESC LIMIT 10").sort_by { |pic| pic.comments.length }.first
+    pic = Picture.limit(10).sort_by { |pic| pic.comments.length }.last
+
     pic.tags.sample
   end
 

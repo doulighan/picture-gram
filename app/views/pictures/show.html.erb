@@ -1,35 +1,54 @@
-<img src="<%= @picture.image_url %>" alt="<%= @picture.title %>">
-<h2><%= @picture.title %></h2>
-<ul> 
-<% @picture.tags.each do |tag| %>
-  <li><%= tag.name %> </li>
-<% end %>
-</ul>
-<hr>
-<h4>Comments</h4><br>
-<% @picture.comments.each do |comment| %>
-  <li><%= comment.user.username %></li>
-  <p> <%= comment.content %> </p>
-<% end %>
+<div class="well">
+  <img src="<%= @picture.image_url %>" alt="<%= @picture.title %>">
+  <h2><%= @picture.title %></h2>
+  <ul> 
+  <% @picture.tags.each do |tag| %>
+    <li><%= link_to tag.name, tag %> </li>
+  <% end %>
+  </ul>
+  <div>
+  <% if current_user.id == @picture.user_id %>
+    <%= form_for Tag.new do |f| %>
+      <%= f.hidden_field :picture_id, value: @picture.id %>
+      <%= f.text_field :name %>
+      <%= f.submit value:"Add Tag" %>
+      <% end %>
+  <% end %> 
+  </div>
+  <h4>Posted By:</h4>
+  <%= link_to @picture.user.username, @picture.user %>
+</div>
 
-<%= form_for Comment.new do |f| %>
-  <%= f.hidden_field :picture_id, value: @picture.id %>
-  <div style="background-color:#e0ffff">
-    <form class="form-horizontal">
-      <fieldset>
-        <legend>Post a comment</legend>
-       <div class="form-group">
-            <label for="textArea" class="col-lg-2 control-label"></label>
-            <div class="col-lg-10">
-              <%= f.text_area(:content, size: '50x10') %>
+<div class="well">
+<div style="padding:2% 0 2% 0; border-top:2px solid black">
+<h4>Comments</h4>
+  <% @picture.comments.each do |comment| %>
+    <li><%= link_to comment.user.username, user_path(comment.user) %></li>
+    <p> <%= comment.content %> </p>
+  <% end %>
+  </div>
+</div>
+
+<div class="well">
+  <%= form_for Comment.new do |f| %>
+    <%= f.hidden_field :picture_id, value: @picture.id %>
+    <div style="background-color:#e0ffff">
+      <form class="form-horizontal">
+        <fieldset>
+          <legend>Post a comment</legend>
+         <div class="form-group">
+              <label for="textArea" class="col-lg-2 control-label"></label>
+              <div class="col-lg-10">
+                <%= f.text_area(:content, size: '50x10') %>
+              </div>
+            </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <%= f.submit class: "btn btn-primary" %>
             </div>
           </div>
-        <div class="form-group">
-          <div class="col-lg-10 col-lg-offset-2">
-            <%= f.submit class: "btn btn-primary" %>
-          </div>
-        </div>
-      </fieldset>
-    </form>
-  </div>
-<% end %>
+        </fieldset>
+      </form>
+    </div>
+  <% end %>
+</div>

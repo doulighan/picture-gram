@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     unless logged_in?
-      flash[:error] = "You must login to access this part of the site"
+      flash[:warning] = "You must login to access this part of the site"
       redirect_to root_path
     end
   end

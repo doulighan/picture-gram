@@ -3,42 +3,76 @@
 <label> Pictures: </label>
 <br>
 <% @user.pictures.each do |pic| %> 
-  <%= link_to image_tag(pic.image_url), picture_path(pic) %> 
+  <% if pic.image_url != nil %>
+    <%= link_to image_tag(pic.image_url, size: "295x295"), picture_path(pic) %> 
+  <% else %>
+    <%= pic.title %>
+  <% end %>
 <% end %>
 <br>
 <hr>
 <br>
 
-<%= form_for(@picture) do |f| %>  
+<% if current_user.id == @user.id %>
+  <%= form_for(@picture) do |f| %>  
+    <div style="background-color:#e0ffff">
+      <form class="form-horizontal">
+        <fieldset>
+          <legend>Post picture</legend>
+          <div class="form-group">
+            <label for="inputImageUrl" class="col-lg-2 control-label">Image URL</label>
+            <div class="col-lg-10">
+              <div style="margin-top:10px"><%= f.url_field :image_url, class: "form-control" %></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputTitle" class="col-lg-2 control-label">Title</label>
+            <div class="col-lg-10">
+              <div style="margin-top:10px"><%= f.text_field :title, class: "form-control" %></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
+              <%= b.label class:"label-checkbox" do%>
+                <%=b.check_box + b.text%>
+              <%end%>
+            <%end%>
+          <div>
+          <div class="form-group">
+            <label for="inputTagName" class="col-sm-2 control-label">New Tag</label>
+            <div >
+              <div style="margin-top:10px">
+              <%= fields_for :tags do |tag_fields| %>
+                <%= tag_fields.text_field :name %>
+              <%end%>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <%= f.submit class:"btn btn-default"%>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  <% end %>
+  <br>
+
   <div style="background-color:#e0ffff">
     <form class="form-horizontal">
       <fieldset>
-        <legend>Post picture</legend>
+        <legend>  What people are saying about your pictures</legend>
         <div class="form-group">
-          <label for="inputImageUrl" class="col-lg-2 control-label">Image URL</label>
-          <div class="col-lg-10">
-            <div style="margin-top:10px"><%= f.url_field :image_url, class: "form-control" %></div>
-          </div>
+          <ul>
+            <% @user.pictures.each do |pic| %>
+              <% pic.comments.each do |com| %>
+                <li><%= com.user.username %></li>
+                <p> <%= com.content %> </p>
+              <% end %>
+            <% end %>
+          </ul>
         </div>
-        <div class="form-group">
-          <label for="inputTitle" class="col-lg-2 control-label">Title</label>
-          <div class="col-lg-10">
-            <div style="margin-top:10px"><%= f.text_field :title, class: "form-control" %></div>
-          </div>
-        </div>
-        <div class="form-group">
-          <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
-            <%= b.label class:"label-checkbox" do%>
-              <%=b.check_box + b.text%>
-            <%end%>
-          <%end%>
-        <div>
-        <div class="form-group">
-          <div class="col-lg-10 col-lg-offset-2">
-            <%= f.submit class: "btn btn-primary" %>
-          </div>
-        </div>
-
       </fieldset>
     </form>
   </div>
